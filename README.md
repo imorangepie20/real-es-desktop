@@ -55,4 +55,5 @@ real-es-desktop/
 - `.deb` 번들 빌드·시스템 설치 완료: `pnpm tauri build --bundles deb` → `RESM_0.1.0_amd64.deb` 설치(`/usr/bin/resm`), 앱 메뉴(Office 카테고리) 등록, 설치본 실행 검증(창 확인). create-tauri-app 잔재 메타데이터 정리(크레이트·바이너리 `tauri-app`→`resm`, Maintainer·Description 정비).
 - 네이티브 통합: 시스템 트레이(열기/종료), 창 닫기=트레이로 숨김(완전 종료는 트레이 "종료"), 창 크기·위치 기억(window-state 플러그인), 새 창·팝업(`target=_blank`)은 기본 브라우저로. 기본 창 1664×1040. 창 생성을 config → Rust로 이전, 템플릿 잔재 `greet` 명령 제거. 우편번호 검색(웹 embed 방식)과 호환 검증 완료.
 - Windows 크로스컴파일: 리눅스 서버에서 cargo-xwin + NSIS로 `RESM_0.1.0_x64-setup.exe` 생성 성공(§Windows 크로스컴파일 절차 참고). **Windows 실기 설치·실행 검증 완료.**
+- 적응형 기본 창 크기: 기본 1664×1040, 화면 작업영역보다 크면 해당 축을 작업영역의 85%로 축소 + 중앙 배치 — Windows 소형 화면에서 전체화면처럼 꽉 차던 문제 해결(실기 검증 완료). 창 상태 파일이 있으면 저장된 크기가 우선.
 - (작업 단위가 끝날 때마다 사용자 가시 효과를 한두 줄로 누적 기록한다. 절차는 [CLAUDE.md](CLAUDE.md) §5 참고.)

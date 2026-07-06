@@ -23,11 +23,26 @@ pub fn run() {
                 .build(),
         )
         .setup(|app| {
+            // 기본 1664×1040 — 화면 작업영역보다 크면 해당 축을 작업영역의 85%로 축소(소형 화면 대응)
+            let (mut width, mut height) = (1664.0_f64, 1040.0_f64);
+            if let Ok(Some(monitor)) = app.handle().primary_monitor() {
+                let scale = monitor.scale_factor();
+                let area = monitor.work_area().size;
+                let (avail_w, avail_h) = (area.width as f64 / scale, area.height as f64 / scale);
+                if width > avail_w {
+                    width = avail_w * 0.85;
+                }
+                if height > avail_h {
+                    height = avail_h * 0.85;
+                }
+            }
+
             // 메인 창 — 새 창(target=_blank·팝업)은 기본 브라우저로.
             // on_navigation은 iframe 로드에도 발동해 embed류(우편번호 검색)를 깨뜨리므로 쓰지 않는다.
             WebviewWindowBuilder::new(app, "main", WebviewUrl::External(APP_URL.parse().unwrap()))
                 .title("RESM")
-                .inner_size(1664.0, 1040.0)
+                .inner_size(width, height)
+                .center()
                 .on_new_window(|url, _features| {
                     let _ = tauri_plugin_opener::open_url(url.as_str(), None::<&str>);
                     NewWindowResponse::Deny
