@@ -5,15 +5,7 @@
   "identifier": "com.resm.desktop",
   "app": {
     "withGlobalTauri": true,
-    "windows": [
-      {
-        "label": "main",
-        "title": "RESM",
-        "url": "https://resm.approid.team",
-        "width": 1280,
-        "height": 800
-      }
-    ],
+    "windows": [],
     "security": {
       "csp": null
     }
