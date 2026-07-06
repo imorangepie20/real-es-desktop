@@ -54,5 +54,5 @@ real-es-desktop/
 - 개발 가이드라인·하네스 인입: 웹 프로젝트(`/opt/real-es`)에서 `CLAUDE.md` + `.claude/` 복사, `CLAUDE.md` §6 데스크탑 맥락으로 조정(UI·기능은 웹에서). `AGENTS.md`(Tauri/Rust 주의)·`docs/PROJECT_GUIDE.md` 신규.
 - `.deb` 번들 빌드·시스템 설치 완료: `pnpm tauri build --bundles deb` → `RESM_0.1.0_amd64.deb` 설치(`/usr/bin/resm`), 앱 메뉴(Office 카테고리) 등록, 설치본 실행 검증(창 확인). create-tauri-app 잔재 메타데이터 정리(크레이트·바이너리 `tauri-app`→`resm`, Maintainer·Description 정비).
 - 네이티브 통합: 시스템 트레이(열기/종료), 창 닫기=트레이로 숨김(완전 종료는 트레이 "종료"), 창 크기·위치 기억(window-state 플러그인), 새 창·팝업(`target=_blank`)은 기본 브라우저로. 기본 창 1664×1040. 창 생성을 config → Rust로 이전, 템플릿 잔재 `greet` 명령 제거. 우편번호 검색(웹 embed 방식)과 호환 검증 완료.
-- Windows 크로스컴파일: 리눅스 서버에서 cargo-xwin + NSIS로 `RESM_0.1.0_x64-setup.exe` 생성 성공(§Windows 크로스컴파일 절차 참고). Windows 실기 설치·실행 검증은 대기.
+- Windows 크로스컴파일: 리눅스 서버에서 cargo-xwin + NSIS로 `RESM_0.1.0_x64-setup.exe` 생성 성공(§Windows 크로스컴파일 절차 참고). **Windows 실기 설치·실행 검증 완료.**
 - (작업 단위가 끝날 때마다 사용자 가시 효과를 한두 줄로 누적 기록한다. 절차는 [CLAUDE.md](CLAUDE.md) §5 참고.)
