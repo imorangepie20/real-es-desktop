@@ -36,11 +36,12 @@ real-es-desktop/
 ### 빌드 / 실행
 
 - 빌드 검증: `cd src-tauri && cargo build`
-- 실행: `pnpm tauri dev` (디스플레이 필요)
+- 실행: `pnpm tauri dev` — SSH/tty 세션에선 `DISPLAY=:1 pnpm tauri dev` (Zorin 그래픽 세션)
 - 번들: `pnpm tauri build`
 
 ## 현재 반영 상태
 
-- 초기 셋업: Tauri v2 셸(create-tauri-app), 원격 웹뷰(`resm.approid.team`), `cargo build` 검증 통과. 식별자 `com.resm.desktop`, 타이틀 RESM, 1280×800.
+- 초기 셋업: Tauri v2 셸(create-tauri-app), 원격 웹뵤(`resm.approid.team`), `cargo build` 검증 통과. 식별자 `com.resm.desktop`, 타이틀 RESM, 1280×800.
+- 실행 검증 완료: Zorin 그래픽 세션(`:1`)에서 `DISPLAY=:1 pnpm tauri dev`로 창 정상 런칭 확인(원격 웹뷰 로드).
 - 개발 가이드라인·하네스 인입: 웹 프로젝트(`/opt/real-es`)에서 `CLAUDE.md` + `.claude/` 복사, `CLAUDE.md` §6 데스크탑 맥락으로 조정(UI·기능은 웹에서). `AGENTS.md`(Tauri/Rust 주의)·`docs/PROJECT_GUIDE.md` 신규.
 - (작업 단위가 끝날 때마다 사용자 가시 효과를 한두 줄로 누적 기록한다. 절차는 [CLAUDE.md](CLAUDE.md) §5 참고.)

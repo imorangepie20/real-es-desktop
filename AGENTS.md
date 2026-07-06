@@ -12,7 +12,7 @@
 ## 빌드 / 실행
 
 - 빌드 검증: `cargo build` (`src-tauri/`에서).
-- 실행: `pnpm tauri dev` (디스플레이 필요 — 이 서버는 헤드리스라 실행 불가, 빌드까지만).
+- 실행: `pnpm tauri dev`. 이 서버는 Zorin OS 그래픽 세션(`:1`) — SSH/tty 세션에선 `DISPLAY=:1 pnpm tauri dev`.
 - 번들: `pnpm tauri build`.
 
 ## 원격 웹뷰
