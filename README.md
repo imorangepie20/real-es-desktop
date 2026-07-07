@@ -46,6 +46,13 @@ real-es-desktop/
 - 산출물: `src-tauri/target/x86_64-pc-windows-msvc/release/bundle/nsis/RESM_<버전>_x64-setup.exe`
 - MSI는 Windows 호스트에서만 생성 가능(리눅스에선 NSIS만). 서명 없음 — 설치 시 SmartScreen 경고는 "추가 정보 → 실행"으로 통과.
 
+### macOS 빌드 (.app + .dmg)
+
+- 시스템 의존: Xcode Command Line Tools (`xcode-select --install`), Rust (`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`)
+- 빌드: `pnpm tauri build`
+- 산출물: `src-tauri/target/release/bundle/macos/RESM.app` (실행 앱), `src-tauri/target/release/bundle/dmg/RESM_<버전>_aarch64.dmg` (설치용 DMG)
+- M1/M2(Mac ARM)에서는 `aarch64`, Intel은 `x86_64` 아키텍처 자동 생성. 유니버설 바이너리는 macOS 호스트에서만 가능(현재 Linux 서버에서 크로스컴파일 미지원).
+
 ## 현재 반영 상태
 
 - 초기 셋업: Tauri v2 셸(create-tauri-app), 원격 웹뵤(`resm.approid.team`), `cargo build` 검증 통과. 식별자 `com.resm.desktop`, 타이틀 RESM, 1280×800.
@@ -56,4 +63,5 @@ real-es-desktop/
 - 네이티브 통합: 시스템 트레이(열기/종료), 창 닫기=트레이로 숨김(완전 종료는 트레이 "종료"), 창 크기·위치 기억(window-state 플러그인), 새 창·팝업(`target=_blank`)은 기본 브라우저로. 기본 창 1664×1040. 창 생성을 config → Rust로 이전, 템플릿 잔재 `greet` 명령 제거. 우편번호 검색(웹 embed 방식)과 호환 검증 완료.
 - Windows 크로스컴파일: 리눅스 서버에서 cargo-xwin + NSIS로 `RESM_0.1.0_x64-setup.exe` 생성 성공(§Windows 크로스컴파일 절차 참고). **Windows 실기 설치·실행 검증 완료.**
 - 적응형 기본 창 크기: 기본 1664×1040, 화면 작업영역보다 크면 해당 축을 작업영역의 85%로 축소 + 중앙 배치 — Windows 소형 화면에서 전체화면처럼 꽉 차던 문제 해결(실기 검증 완료). 창 상태 파일이 있으면 저장된 크기가 우선.
+- macOS 빌드 절차 문서화: README에 macOS(M1/M2 ARM)용 빌드 방법 추가 — Xcode Tools + Rust 설치 후 `pnpm tauri build`로 `.app`/`.dmg` 생성. Apple Silicon nativ 지원.
 - (작업 단위가 끝날 때마다 사용자 가시 효과를 한두 줄로 누적 기록한다. 절차는 [CLAUDE.md](CLAUDE.md) §5 참고.)
